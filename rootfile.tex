@@ -182,7 +182,6 @@
 \newcommand{\spec}{\ensuremath{\textit{spec}}}
 \newcommand{\disc}{\ensuremath{\textit{disc}}}
 \newcommand{\loc}{\ensuremath{\textit{loc}}}
-\newcommand{\Stone}{\ensuremath{\textit{Stone}}}
 \newcommand{\qc}{\ensuremath{\textit{qc}}}
 \newcommand{\vop}{\ensuremath{\textit{vop}}}
 \newcommand{\trig}{\ensuremath{\textit{trig}}}
@@ -244,6 +243,8 @@
 \newcommand{\Setfin}{\Set^{\fin}}
 \newcommand{\Preord}{\categ{Preord}}
 
+\newcommand{\Comp}{\categ{Comp}}
+\newcommand{\Stone}{\categ{Stone}}
 \newcommand{\Vect}{\categ{Vect}}
 \newcommand{\Proj}{\categ{Proj}}
 \newcommand{\Cplx}{\categ{Cplx}}
@@ -276,7 +277,6 @@
 \newcommand{\Topbcadm}{\Top_{\infty}^{\bc,\adm}}
 \newcommand{\Toploc}{\Top_{\infty}^{\loc}}
 \newcommand{\Toppt}{\Top_{\infty,\ast}}
-\newcommand{\TopStone}{\Top_{\infty}^{\Stone}}
 \newcommand{\StrTop}{\categ{StrTop}}
 \newcommand{\StrTopspec}{\StrTop^{\spec}}
 \newcommand{\LocCocart}{\categ{LocCocart}}
@@ -454,21 +454,11 @@
 
 \setcounter{section}{-1}
 
-%-------------------------------------------------------------------%
-%-------------------------------------------------------------------%
-%  Introduction                                                     %
-%-------------------------------------------------------------------%
-%-------------------------------------------------------------------%
-
 \include{introduction}
 
-%-------------------------------------------------------------------%
-%-------------------------------------------------------------------%
-% Elements of general topology                                      %
-%-------------------------------------------------------------------%
-%-------------------------------------------------------------------%
-
 \include{topology}
+
+\include{pyknoticsets}
 
 %-------------------------------------------------------------------%
 %-------------------------------------------------------------------%

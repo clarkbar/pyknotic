@@ -1,8 +1,14 @@
 %!TEX root = rootfile.tex
 
+%-------------------------------------------------------------------%
+%-------------------------------------------------------------------%
 \section{Elements of general topology}
+%-------------------------------------------------------------------%
+%-------------------------------------------------------------------%
 
+%-------------------------------------------------------------------%
 \subsection{Ultrafilters and compacta}
+%-------------------------------------------------------------------%
 
 \begin{ntn}
 	Write $ \Set $ for the category of tiny finite sets.
@@ -75,7 +81,7 @@ To prove the existence of these, let us look at a more traditional way of defini
 \begin{nul}
 	Ultrafilters are functorial in maps of sets.
 	Let $ \phi \colon S \to T $ be a map, and let $ \mu $ be an ultrafilter on $ S $.
-	The ultrafilter $ \phi_{\ast}\mu $ is the ultrafilter on $ T $ given by
+	The ultrafilter $ \phi_{\ast}\mu $ on $ T $ given by
 	\[
 		\int_T f \ d (\phi_{\ast}\mu) = \int_S (f \circ \phi) \ d \mu \period
 	\]
@@ -140,14 +146,14 @@ To prove the existence of these, let us look at a more traditional way of defini
 	If $ \phi $ is a functor $ \Set \to \Set $, then a natural transformation $ \phi \to \beta $ is the same thing as a natural transformation $ \phi \circ i \to i $.
 	Please observe that we have a canonical identification $ \beta \circ i = i $.
 
-	It follows readily that the functor $ \beta $ is a monad: the unit $ \id \to \beta $ corresponds to the identification $ {\id} \circ i = i $, and the multiplication $ \beta^2 \to \beta $ corresponds to the identification $ \beta^2 \circ i = i $.
+	It follows readily that the functor $ \beta $ is a monad: the unit $ \delta \colon \id \to \beta $ corresponds to the identification $ {\id} \circ i = i $, and the multiplication $ \mu \colon \beta^2 \to \beta $ corresponds to the identification $ \beta^2 \circ i = i $.
 
 	The unit for the monad $\beta$ structure is the assignment $ s \mapsto \delta_s $ that picks out the principal ultrafilter at a point.
 
-	To describe the multiplication $ \tau \mapsto \mu(\tau) $, let us write $ T^{\dag} $ for the set of ultrafilters supported on $\{T\}$.
-	Now if $ \tau $ is an ultrafilter on $ \beta(S) $, then $ \mu(\tau) $ is the ultrafilter on $S$ such that
+	To describe the multiplication $ \tau \mapsto \mu_{\tau} $, let us write $ T^{\dag} $ for the set of ultrafilters supported on $\{T\}$.
+	Now if $ \tau $ is an ultrafilter on $ \beta(S) $, then $ \mu_{\tau} $ is the ultrafilter on $S$ such that
 	\[
-		\mu(\tau) ( T ) = \tau ( T^{\dag} ) \period
+		\mu_{\tau} ( T ) = \tau ( T^{\dag} ) \period
 	\]
 \end{nul}
 
@@ -171,14 +177,14 @@ To prove the existence of these, let us look at a more traditional way of defini
 	A \defn{compactum} is an algebra for the monad $ \beta $.
 	Hence a compactum consists of a set $ K $ and a map $ \lambda_K \colon \beta(K) \to K $, which is required to satisfy the usual identities:
 	\[
-		\lambda_K(\lambda_{K,\ast}\tau) = \lambda_K(\mu(\tau)) \andeq{} \lambda_K(\delta_s) = s \comma
+		\lambda_K(\lambda_{K,\ast}\tau) = \lambda_K(\mu_{\tau}) \andeq{} \lambda_K(\delta_s) = s \comma
 	\]
 	for any ultrafilter $ \tau $ on $ \beta(S) $ and any point $ s \in S $.
 	The image $ \lambda_K(\mu) $ will be called the \defn{limit} of the ultrafilter $\mu$.
-	The category $ \categ{Comp} $ is the category of compacta.
+	We write $ \Comp $ for the category of compacta.
 \end{dfn}
 
-\begin{cnstr}
+\begin{cnstr} \label{turnacompactumintoatopspace}
 	If $K$ is a compactum, then we use the limit map $ \lambda_K \colon \beta(K) \to K $ to topologise $ K $ as follows.
 	For any subset $ T \subseteq K $, we define the closure of $ T $ as the image $ \lambda_K(T^{\dag}) $.
 
@@ -338,3 +344,150 @@ Let us now return to our functor $ K \mapsto K^{\textit{top}} $.
 	\]
 	but this follows exactly from \Cref{continuityviaultrafilters}.
 \end{proof}
+
+\begin{nul}
+	We opted in \Cref{turnacompactumintoatopspace} to define the topology on a compactum $ K $ in very explicit terms, but note that the map $ \lambda_K \colon \beta(K) \to K^{\textit{top}} $ is a continuous surjection between compact Hausdorff topological spaces.
+	Thus $ K^{\textit{top}} $ is endowed with the quotient topology relative to $ \lambda_K $.
+\end{nul}
+
+%-------------------------------------------------------------------%
+\subsection{Stone and {S}tonean spaces}
+%-------------------------------------------------------------------%
+
+\begin{dfn}
+	Let $ X $ be a topological space.
+	One says that $ X $ is \defn{totally separated} if and only if, for any two distinct points $ x, y \in X $, there exists a clopen subset $ V \subseteq X $ that contains $ x $ but not $ y $.
+\end{dfn}
+
+\begin{lem}
+	A compactum $ K $ is totally separated if and only if it admits a base consisting of clopen sets.
+\end{lem}
+
+\begin{proof}
+	Assume that $ K $ is totally separated.
+	Let $ U \subseteq K $ be an open subset.
+	It suffices to show that for any point $ x \in U $, there is a clopen neighbourhood of $ x $ that is contained in $ U $.
+	For any $ y \notin U $, let $ V_y \subseteq X $ be a clopen that contains $ y $ but not $ x $;
+	now $ \{ V_y \}_{y \in X \smallsetminus U} $ covers $ X \smallsetminus U $.
+	Since $ X \smallsetminus U $ is a closed subset of a compactum, it too is compact, whence there exist finitely many points $ y_1, \dots, y_n \in X \smallsetminus U $ such that $ \{ V_{y_1}, \dots, V_{y_n} \} $ cover $ X \smallsetminus U $.
+	Now the complement 
+	\[
+		X \smallsetminus (V_{y_1} \cup \dots \cup V_{y_n})
+	\]
+	is a clopen neighbourhood of $ x $ contained in $ U $.
+
+	Conversely, assume that $ X $ admits a base of clopen subsets, and let $ x, y \in X $ be distinct points of $ X $.
+	By Hausdorffness, there exists an open neighbourhood $ U $ of $ x $ that does not contain $ y $. 
+	Since $ X $ admits a base of clopen subsets, there is a clopen neighbourhood of $ x $ that is contained in $ U $, which therefore does not contain $ y $.
+\end{proof}
+
+\begin{dfn}
+	A compactum is a \defn{Stone space} if and only if it is totally separated.
+	Let us write $ \Stone \subseteq \Comp $ for the full subcategory spanned by the Stone spaces.
+\end{dfn}
+
+\begin{exm}
+	Clearly any finite set is a Stone space.
+	More generally, let $ I \colon A^{\op} \to \Fin $ be a diagram of finite sets.
+	If we form the limit $ K = \lim_{\alpha \in A^{\op}} I_{\alpha}^{\disc}$ in $ \Top $ or $ \Comp $, then $ K $ is a Stone space.
+	In particular, if $ S $ is any set, then $ \beta(S) = \lim_{I \in \Fin_{S/}} $ is a Stone space.
+\end{exm}
+
+\begin{lem}
+	Any Stone space is the inverse limit of its finite discrete quotients.
+\end{lem}
+
+\begin{proof}
+	Let $ K $ be a Stone space.
+	The category $ \Fin_{K/} $ of finite sets to which $ K $ maps (in $ \Comp $ is an \defn{ inverse } category -- i.e., the opposite of a filtered category.
+	Limit-cofinal in $ \Fin_{K/} $ is the full subcategory spanned by the finite discrete quotients.
+	Hence we aim to show that the natural continuous map
+	\[
+		p \colon K \to \lim_{I \in \Fin_{K/}} I
+	\]
+	is a homeomorphism.
+	Since both source and target are compact Hausdorff topological spaces, it suffices to prove that $ p $ is a bijection.
+	For this, let $ x = \{ x_I \}_{I \in \Fin_{K/}} $ be a point of the limit.
+	For any finite discrete quotient $p_I \colon K \to I $, let $ W_I $ be the clopen set $ p_I^{-1}(x_I) $;
+	each of these is clopen, and the claim now is that the intersection
+	\[
+		W \coloneq \bigcap_I W_I
+	\]
+	consists of exactly one point of $ K $.
+	Since $ K $ is quasicompact, it follows that $ W $ is nonempty.
+	Since $ K $ is totally disconnected and Hausdorff, it follows that if $ x \neq y $, there exists a continuous map to $\{ 0,1 \}^{\disc}$ such that $ x \mapsto 0 $ and $ y \mapsto 1 $;
+	hence $ W $ contains at most one point.
+\end{proof}
+
+\begin{nul}
+	In particular, $ \Stone $ is the smallest full subcategory of $ \Top $ that contains $ \Fin $ and is closed under inverse limits.
+\end{nul}
+
+Inverse limits of compacta are exceptionally well behaved.
+A key lemma that demonstrates this is the following.
+
+\begin{lem} \label{emptyinverselimitofcompacta}
+	Let $ \{ K_{\alpha} \}_{\alpha \in A^{\op}} $ be an inverse system of compacta, and assume that the inverse limit is empty.
+	Then one of the $ K_{\alpha} $ is empty as well.
+\end{lem}
+
+\begin{proof}
+	Let $ K $ be the product $\prod_{\alpha \in A} K_{\alpha}$;
+	by Tychonoff it is compact.
+	For any $ \beta \in A $, consider the subset
+	\[
+		W_{\beta} \coloneq \left\{ (x_{\alpha})_{\alpha \in A} \in K : \forall \beta \to \alpha,\ \phi_{\alpha\beta} (x_{\alpha}) = x_{\beta} \right\} \period
+	\]
+	The subsets $W_{\beta} \subseteq X$ are closed by Hausdorffness, and the intersection $\bigcap_{\beta \in A} W_{\beta}$ is the limit of the $ K_{\alpha} $, which is empty.
+	By compactness and the filteredness of $ A $, there exists an index $ \beta $ for which $ W_{\beta} $ is empty.
+
+	On the other hand, $W_{\beta}$ is in bijection with $ K_{\beta} \times L_{\beta} $, where $ L_{\beta} $ is the product of $ K_{\gamma} $ over those $ \gamma \in A $ such that $ \gamma $ does not receive a map from $ \beta $.
+	Thus one of these must be empty.
+\end{proof}
+
+\begin{exm}
+	The compactness condition is necessary in the previous lemma.
+	For instance, consider the inverse system
+	\begin{equation*}
+		\begin{tikzcd}[sep=1.5em]
+			\cdots \arrow[r, "s", hooked] & \NN^{\disc} \arrow[r, "s", hooked] &  \NN^{\disc} \arrow[r, "s", hooked] & \NN^{\disc}
+		\end{tikzcd}
+	\end{equation*}
+	where $ s \colon \NN \inclusion \NN $ is the successor function.
+	Its limit is empty.
+\end{exm}
+
+\begin{lem}
+	Any finite discrete set is cocompact as an object of $ \Comp $.
+	Consequently, the fully faithful functor $ \Fin \inclusion \Comp $ extends to a limit-preserving fully faithful functor $ \Pro(\Fin) \inclusion \Comp $ whose essential image is $ \Stone $.
+\end{lem}
+
+\begin{proof}
+	Let $ \{ K_{\alpha} \}_{\alpha \in A^{\op}} $ be an inverse system of compacta, and let $ I $ be a finite set.
+	Write $ K \coloneq \lim_{\alpha \in A^{\op}} K_{\alpha} $;
+	the claim is that the map $ \colim_{\alpha \in A^{\op}} \Map(K_{\alpha}, I^{\disc}) \to \Map(K, I^{\disc}) $ is a bijection.
+
+	For any topological space $ X $, a continuous map $ X \to I^{\disc} $ is the same thing as a partition of $ X $ into clopens indexed by the elements of $ I $.
+	Hence by induction, it suffices to show:
+	\begin{enumerate}[(1)]
+		\item that every clopen $ V \subseteq K $ into two complementary clopens is the inverse image of some clopen of $ V_{\alpha} \subseteq K_{\alpha} $, and
+		\item that if clopens $ V_{\alpha} \subseteq K_{\alpha} $ and $ V_{\beta} \subseteq V_{\beta} $ pull back to the same $ V \subseteq K $, then there are maps $ \alpha \to \gamma $ and $ \beta \to \gamma $ in $ A $ such that $ V_{\alpha} $ and $ V_{\beta} $ pull back to the same subset of $ K_{\gamma} $.
+	\end{enumerate}
+
+	For the first claim, consider a clopen $ V \subseteq K $.
+	Since $ K $ has the inverse limit topology, $ V $ is a union of open sets of the form $ V_{\gamma} $, where $ V_{\gamma} $ is pulled back from an open $ K_{\gamma} $.
+	But since $ V $ is also closed, it is quasicompact, and therefore by the filteredness of $ A $ there is a single $ \gamma \in A $ such that $ V $ is pulled back from $ V_{\gamma} $.
+	The same analysis of the complement of $ V $ exhibits it as the pullback from some $ K_{\beta} $;
+	now letting $ \alpha \in A $ be an object that receives maps from both $ \beta $ and $ \gamma $ completes the proof.
+
+	For the second claim, suppose that clopens $ V_{\alpha} \subseteq K_{\alpha} $ and $ V_{\beta} \subseteq V_{\beta} $ pull back to the same $ V \subseteq K $.
+	For any object $ \gamma \in A $ that receives morphisms from both $ \alpha $ and $ \beta $, let $ V_{\alpha\gamma} \subseteq K_{\gamma} $ denote the inverse image of $ V_{\alpha} $, and let $ V_{\beta\gamma} \subseteq K_{\gamma} $ denote the inverse image of $ V_{\beta} $.
+	Let $D_{\gamma} \subseteq K_{\gamma} $ be the symmetric difference of $ V_{\alpha\gamma} $ and $ V_{\beta\gamma} $;
+	its inverse image in $ K $ is empty.
+	\Cref{emptyinverselimitofcompacta} now implies that for some index $\gamma$, the set $ D_{\gamma} $ is empty, whence $ V_{\alpha\gamma} = V_{\beta\gamma}$.
+\end{proof}
+
+%-------------------------------------------------------------------%
+\subsection{Compactly generated topological spaces}
+%-------------------------------------------------------------------%
+
