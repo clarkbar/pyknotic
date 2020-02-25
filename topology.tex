@@ -76,6 +76,9 @@ To prove the existence of these, let us look at a more traditional way of defini
 		\item Subsets of thin sets are thin.
 		\item The intersection of two thick sets is thick.
 	\end{enumerate}
+	In other words, if $ S $ is a set, then an ultrafilter on $ S $ is tantamount to a Boolean algebra homomorphism $ \PP(S) \to \{0,1\} $.
+
+	It is possible to define ultrafilters on more general posets, and if $ P $ is a Boolean algebra, then an ultrafilter is precisely a Boolean algebra homomorphism $ P \to \{0, 1\} $.
 \end{nul}
 
 \begin{nul}
@@ -351,7 +354,7 @@ Let us now return to our functor $ K \mapsto K^{\textit{top}} $.
 \end{nul}
 
 %-------------------------------------------------------------------%
-\subsection{Stone and {S}tonean spaces}
+\subsection{Stone spaces and projective compacta}
 %-------------------------------------------------------------------%
 
 \begin{dfn}
@@ -388,9 +391,13 @@ Let us now return to our functor $ K \mapsto K^{\textit{top}} $.
 
 \begin{exm}
 	Clearly any finite set is a Stone space.
+
 	More generally, let $ I \colon A^{\op} \to \Fin $ be a diagram of finite sets.
 	If we form the limit $ K = \lim_{\alpha \in A^{\op}} I_{\alpha}^{\disc}$ in $ \Top $ or $ \Comp $, then $ K $ is a Stone space.
-	In particular, if $ S $ is any set, then $ \beta(S) = \lim_{I \in \Fin_{S/}} $ is a Stone space.
+	Indeed, $ K $ is clearly Hausdorff and compact by Tychonoff;
+	since it admits a base consisting of the inverse images of opens from the discrete spaces $ I_{\alpha}^{\disc} $, it follows that it admits a base of clopens.
+
+	In particular, if $ S $ is any set, then $ \beta(S) = \lim_{I \in \Fin_{S/}} I $ is a Stone space.
 \end{exm}
 
 \begin{lem}
@@ -436,13 +443,13 @@ A key lemma that demonstrates this is the following.
 	by Tychonoff it is compact.
 	For any $ \beta \in A $, consider the subset
 	\[
-		W_{\beta} \coloneq \left\{ (x_{\alpha})_{\alpha \in A} \in K : \forall \beta \to \alpha,\ \phi_{\alpha\beta} (x_{\alpha}) = x_{\beta} \right\} \period
+		Z_{\beta} \coloneq \left\{ (x_{\alpha})_{\alpha \in A} \in K : \forall \beta \to \alpha,\ \phi_{\alpha\beta} (x_{\alpha}) = x_{\beta} \right\} \period
 	\]
-	The subsets $W_{\beta} \subseteq X$ are closed by Hausdorffness, and the intersection $\bigcap_{\beta \in A} W_{\beta}$ is the limit of the $ K_{\alpha} $, which is empty.
-	By compactness and the filteredness of $ A $, there exists an index $ \beta $ for which $ W_{\beta} $ is empty.
+	The subsets $Z_{\beta} \subseteq X$ are closed by Hausdorffness, and the intersection $\bigcap_{\beta \in A} Z_{\beta}$ is the limit of the $ K_{\alpha} $, which is empty.
+	By compactness and the filteredness of $ A $, there exists an index $ \beta $ for which $ Z_{\beta} $ is empty.
 
-	On the other hand, $W_{\beta}$ is in bijection with $ K_{\beta} \times L_{\beta} $, where $ L_{\beta} $ is the product of $ K_{\gamma} $ over those $ \gamma \in A $ such that $ \gamma $ does not receive a map from $ \beta $.
-	Thus one of these must be empty.
+	On the other hand, $Z_{\beta}$ is in bijection with $ K_{\beta} \times L_{\beta} $, where $ L_{\beta} $ is the product of $ K_{\gamma} $ over those $ \gamma \in A $ such that $ \gamma $ does not receive a map from $ \beta $.
+	Thus one of these copies of $ K_{\alpha} $ is empty.
 \end{proof}
 
 \begin{exm}
@@ -486,6 +493,83 @@ A key lemma that demonstrates this is the following.
 	its inverse image in $ K $ is empty.
 	\Cref{emptyinverselimitofcompacta} now implies that for some index $\gamma$, the set $ D_{\gamma} $ is empty, whence $ V_{\alpha\gamma} = V_{\beta\gamma}$.
 \end{proof}
+
+\begin{dfn}
+	By a \defn{projective compactum} we mean a projective object in compacta.
+	That is, a compactum $ X $ is projective if and only if, for any surjection $ Y \surjection Z $, the map $ \Map(X, Y) \to \Map(X, Z) $ is also a surjection.
+\end{dfn}
+
+\begin{lem}
+	The following are equivalent for a compactum $ K $.
+	\begin{itemize}
+		\item $ K $ is a retract of a free compactum $ \beta(S) $.
+		\item $ K $ is projective.
+	\end{itemize}
+\end{lem}
+
+\begin{proof}
+	Since a set $ S $ is a projective object of $ \Set $, it follows that the free compactum $ \beta(S) $ is a projective compactum,
+	and since surjections are stable under retracts, it follows that projective compacta are stable under retracts.
+
+	Conversely, let $ K $ be projective compactum, and let $ \lambda_K \colon \beta(K) \surjection K $ be the structure map.
+	Since $ K $ is projective, $ \lambda_K $ admits a section, whence $ K $ is a retract of a free compactum.
+\end{proof}
+
+\begin{nul}
+	In particular, please note that any projective compactum is a Stone space.
+\end{nul}
+
+\begin{dfn}
+	A topological space $ X $ is \defn{extremally disconnected} if and only if any closure of an open subset is open.
+\end{dfn}
+
+\begin{nul}
+	Taking complements, we see that a topological space $ X $ is extremally disconnected if and only if the interior of a closed subset is closed.
+\end{nul}
+
+\begin{lem}
+	If $ X $ is an extremally disconnected topological space, then if $ \{ Z_1, \dots, Z_n \} $ is a finite family of closed subsets that cover $ X $, then the interiors $ \iota(Z_1), \dots, \iota(Z_n) $ cover $ X $ as well.
+\end{lem}
+
+\begin{proof}
+	Assume that $ 1 \leq i \leq n $ and that $ \{ \iota(Z_1), \dots, \iota(Z_{i-1}), Z_i, \dots, Z_n \} $ cover $ X $.
+	Then since $ \iota(Z_1) \cup \dots \cup \iota(Z_{i-1}) \cup Z_{i+1} \cup \dots \cup Z_n $ is closed, it follows that $ \{ \iota(Z_1), \dots, \iota(Z_i), Z_{i+1}, \dots, Z_n \} $ cover $ X $ as well.
+\end{proof}
+
+\begin{prp}
+	The following are equivalent for a compactum $ K $.
+	\begin{itemize}
+		\item $ K $ is projective.
+		\item $ K $ is extremally disconnected as a topological space.
+	\end{itemize}
+\end{prp}
+
+\begin{proof}
+	Assume that $ K $ is projective, and let $ U \subseteq K $ be an open subset.
+	Let $ Z $ be the complement of $ U $, and let $ V $ be its closure.
+	The composite $ \phi $ of the inclusion $ Z \sqcup V \inclusion K \sqcup K $ followed by the fold map $ \nabla \colon K \sqcup K \to K $ is a surjection, so since $ K $ is projective, it admits a section $ \sigma \colon K \to Z \sqcup V $.
+	For any $ x \in U $, one has $ \sigma(x) = x $, and by continuity the same holds for any $ x \in V $.
+	Thus $ \sigma^{-1}(V) = V $, so since $ V $ is open in $ Z \sqcup V $, it follows that $ V $ is open in $ K $.
+
+	Conversely, assume that $ K $ is extremally disconnected, assume that $ X \surjection Y $ is a surjection between compacta, and assume that $ f \colon K \to Y $ is a continuous map.
+	A lift of $ f $ is the same thing as a section of the projection $ p \colon P \coloneq X \times_Y K \surjection K $.
+	In other words, it suffices to prove the existence of a closed subset $ W \subseteq P $ such that $ p $ restricts to a homeomorphism $ W \equivalence K $.
+	Consider the set of closed subsets $ W' \subseteq P $ such that $ p(W') = K $;
+	Zorn's lemma ensures that this collection contains a minimal element $ W $.
+	To show that $ p $ restricts to a homeomorphism on $ W $, it suffices to show that $ p $ restricts to an injection.
+
+	Let $ x \neq y $ be distinct points of $ W $.
+	Choose closed subsets $ E $ and $ F $ that cover $ W $ such that $ x \notin F $, and $ y \notin E $.
+	The sets $ p(E) $ and $ p(F) $ cover $ K $.
+	Since $ K $ is extremally disconnected, it follows that the interiors $ \iota(p(E)) $ and $ \iota(p(F))) $ also cover $ K $.
+
+	So to prove that $ p(x) \neq p(y) $, we shall show that $ p(x) \notin \iota(p(F)) $, and that $ p(y) \notin \iota(p(E)) $.
+	Without loss of generality it suffices to prove the first claim.
+	Suppose that $ B \subseteq K $ is a closed subset such that $ B \cup p(F) = K $;
+	we aim to show that $ p(x) \in B $.
+	Indeed, $ p(p^{-1}(B) \cup F) = K $, so the minimality of $ W $ implies that $ p^{-1}(B) \cup F = W $, whence $ x \in p^{-1}(B) $.
+\end{proof}
+	
 
 %-------------------------------------------------------------------%
 \subsection{Compactly generated topological spaces}
