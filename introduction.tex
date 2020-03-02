@@ -1,25 +1,114 @@
 %!TEX root = rootfile.tex
-
 %-------------------------------------------------------------------%
 %-------------------------------------------------------------------%
 \section*{Introduction}\addcontentsline{toc}{section}{Introduction}
 %-------------------------------------------------------------------%
 %-------------------------------------------------------------------%
 
-These are notes for a series of talks at MSRI about the \emph{pyknotic formalism}.
-
-The pyknotic formalism offers a way to coordinate `topological' and `derived' structures.
-This formalism is only partially developed, but it’s already clear that there is a lot to explore, and a lot of interesting possible applications.
+These are notes for a series of talks at MSRI about the \emph{pyknotic formalism}, which offers a way to coordinate `continuous' and `derived' structures.
+This formalism is only partially developed, but it’s already clear that there is a lot to explore, and lots of interesting possible applications.
 Many different points of view on pyknotic objects will be necessary to develop these applications.
 
-\subsection*{What we're trying to achieve}
+The MSRI lectures were given to rooms full of people with a good deal of experience in category theory.
+As a result, I have opted to focus on aspects of the story that are not formal, and we have left many of the more categorical consequences of the results here unproved but in the safe hands of experts.
+
+\noindent --- C. Barwick
+
+\subsection*{Challenges}
+
+To start, let us isolate a rather eclectic list of challenges that have provoked the development of pyknotic and condensed mathematics.
+These challenges emerge from a few different areas of mathematics, and we do not yet have complete answers to them all of them, but they are an effort to motivate some of the machinery we introduce.
+
+\begin{exm*}	
+	Roughly speaking, field theories assign to a closed $ n $-manifold a number and to an $ (n-1) $-manifold a Hilbert space or more general topological vector space.
+	But what will it assign to an $ (n-2) $-manifold?
+	The answer is meant to be of category number $ 1 $, but it should at the same time incorporate some `continuous' structure -- a `topological $ 2 $-vector space'.
+	Whatever sort of object this is, it should be a suitable categorification of the notion of a topological vector space.
+
+	Furthermore, one no longer works only with vector spaces in field-theoretic applications.
+	Modern tools like the Batalin--Vilkovisky formalism require the deployment of homological algebra.
+	These days, one often `does' homological algebra with topological vector spaces and the like by working with the derived \category of a quasiabelian category.
+	However, it is not at all clear whether these \categories inherit any meaningful topological structure.
+	It's thus unclear whether these \categories are `topological $ (\infty,2) $-vector spaces', or what it would mean to work with such a thing.
+\end{exm*}
 
 \begin{exm*}
-	The study of field theories necessitates often the use of infinite-dimensional vector spaces, such as the space of distributions on a smooth manifold.
-	Of course, these are locally convex topological spaces, and the functional analysis literature is full of techniques to deal with these structures.
-	At the same time, modern tools like the Batalin--Vilkovisky formalism require the deployment of homological algebra.
-	So a natural question arises: how does one \emph{do} homological algebra with the kinds of topological vector spaces that arise in these situations?
-
-	The literature is full of examples in which one manages to work with complexes of locally convex topological vector spaces by contemplating the derived \category of a quasiabelian category.
-	But for more sophisticated applications, one has to go further:
+	If $ F $ is a constructible sheaf on $ \Spec \ZZ $, then arithmetic duality is a perfect pairing of finite abelian groups
+	\[
+		H^i_c(\Spec \ZZ, F) \times H^{-i}(\Spec \ZZ, F^{\vee}) \to \QQ/\ZZ \comma
+	\]
+	where $ F^{\vee} = \RR\Hom(F, \GG_m[3]) $.
+	One wants to see this sort of statement as an instance of a Grothendieck-type duality statement that works just as well for coefficients like $ \overline{\QQ}_{\el} $.
+	To make sense of this, one would want access to something akin to a derived \category of topological abelian groups, or, extending the Schlank--Stojanoska arithmetic duality with spectral coefficients, something like a category of `continuous spectra'.
 \end{exm*}
+
+\begin{exm*}
+	The $ K(n) $-local sphere (for a fixed prime $ p $) admits a kind of profinite Galois cover;
+	this is the Lubin--Tate spectrum $ E_n $, whose homotopy is the complete local ring
+	\[
+		\pi_{\ast}E_n \cong \WW(\FF_{p^n})\llbracket u_1, \dots, u_{n-1} \rrbracket [u^{\pm 1}] \period
+	\]
+	This $ K(n) $-local $ E_{\infty} $ ring spectrum admits an action by a $ p $-adic Lie group $ \GG_n $ (the \emph{Morava stabilizer group}), and the induced action on $ \pi_{\ast} E_n $ is continuous.
+	The continuous cohomology of $ \GG_n $ with coefficients in $ \pi_{\ast} E_n $ is the $ E_2 $ page of a spectral sequence
+	\[
+		E_2^{s,t} \coloneq H^s(\GG_n, \pi_t E_n) \Rightarrow \pi_{t-s}(\SS_{K(n)}) \period
+	\]
+	It is natural to suppose, then, that $ E_n $ and $ \SS_{K(n)} $ itself are `continuous spectra', the action of the Morava stabiliser group on $ E_n $ is continuous relative to this structure, and the homotopy fixed point continuous spectrum is $ \SS_{K(n)} $.
+\end{exm*}
+
+\begin{exm*}
+	Any reasonable connected scheme $ X $ has an étale fundamental group $ \pi_1^{\et}(X) $ 
+	If $ X $ is normal, then this group is profinite, and it classifies local systems on $ X $, in the sense that there is an equivalence of categories between continuous $K$-linear representations of $ \pi_1^{\et}(X) $ and local systems of $ K $-vector spaces.
+	This holds for any finite or local field $ K $, for example.
+	However, if $ X $ is not normal, then the étale fundamental group needs to be replaced with a more general kind of topological group -- called a \emph{Noohi group} by Bhatt and Scholze -- for this result to hold.
+	More generally, if $ X $ is normal, then the \emph{cohomology} of $ K $-linear local systems on $ X $ can be recovered from its \emph{étale homotopy type} $ \Pi_{\infty}^{\et}(X) $;
+	when $ K $ is a finite field, this follows from an equivalence of \categories between that of local systems of complexes of $ K $-vector spaces and `continuous' functors from the profinite homotopy type $ \Pi_{\infty}^{\et}(X) $ to the derived \category of perfect complexes of $ K $-vector spaces.
+	Here, continuity is defined in the following manner:
+	\[
+		\Functs( \text{``}\lim_i\text{''}\ S_i, \Dperf(K)) \coloneq \colim_i \Fun ( S_i, \Dperf(K))
+	\]
+	If $ K $ is a local field, it's not so clear how to think of $ \Dperf(K) $ as a `continuous' \category, and if $ X $ is not normal, then one requires a definition of $ \Pi_{\infty}^{\et}(X) $ as a more general kind of `space' whose homotopy groups come equipped with some sort of `continuous' structure.
+\end{exm*}
+
+\begin{exm*}
+	Today, analytic algebraic geometry comes in a variety of flavours.
+	One very important source of examples is the moduli space of representations of an absolute Galois group $ G $.
+	In effect, the $ R $-points of such a moduli space should be the $ R $-linear representations of $ G $, but the critical point is that we want to consider examples in which $ R $ comes with a topology, such as $ \ZZ_p $, $ \QQ_p $, $ \overline{\QQ}_p $, or something still more exotic.
+
+	One way to begin to define `a geometry' is to start with a symmetric monoidal abelian category, consider commutative rings therein, define suitable localisations, and glue these rings together.
+	We therefore want to start with a symmetric monoidal category in which the ring objects include the topological rings above.
+\end{exm*}
+
+\subsection*{Topological algebra and its discontents}
+
+One of the important principles that we impress on our undergraduates is that when working with algebraic structures, one should have either finiteness conditions or topological conditions at one's disposal.
+The trouble is, the category of topological spaces is not a particularly well-behaved category, and, accordingly, topological groups, abelian groups, rings, vector spaces, etc., never form very good categories.
+Let us inspect two examples.
+
+\begin{exm*}
+	If $ A, B $ are two topological abelian groups with the same underlying abelian group but with distinct topologies ($ A $ finer than $ B $, say), then the comparison map $ \phi \colon A \to B $ is a monomorphism and an epimorphism, but it is not an isomorphism.
+	To get an abelian category, we shall have to consider a new kernel or cokernel of this map;
+	whatever we might expect of such a kernel or cokernel, please note that it will require us to contemplate a nontrivial `continuous' structure on the point.
+\end{exm*}
+
+\begin{exm*}
+	Write $ \TT $ for the topological abelian group $ \RR/\ZZ \cong \{ z \in \CC : |z| = 1 \} $.
+	For any topological abelian group $ A $, we write $ A^{\ast} $ for the \defn{dual} abelian group $ \Hom(A, \TT) $, equipped with the compact-open topology.
+	There are obvious evaluation homomorphisms $ \varepsilon_A \colon A \times A^{\ast} \to \TT $ and $ \eta_A \colon A \to A^{\ast\ast} $;
+	one says that $ A $ is \defn{reflexive} if and only if $ \eta_A $ is a topological isomorphism.
+	The famous theorem of Pontrjagin says that locally compact abelian groups are always reflexive.
+
+	However, neither $ \varepsilon_A $ nor $ \eta_A $ are even continuous in general.
+	In fact, a topological abelian group is locally compact if and only if $ \varepsilon_A $ is continuous and $ \eta_A $ is a topological isomorphism.
+	Thus duality for topological groups is only really reasonable when we are contemplating LCA groups.
+
+	The issue is that already for topological spaces themselves there is no general internal Hom.
+	The famous issue is that products of quotient maps need not be quotient maps.
+	The usual way of repairing this requires us to pass to a suitable category of (such and such)-generated topological spaces.
+\end{exm*}
+
+In a sense, these two examples are pushing us in different directions.
+The former is asking us to accept new exotic continuous structures on the point, but the latter is asking us to restrict our attention to well-behaved topological spaces.
+In effect, we will do \emph{both} of these at once.
+
+

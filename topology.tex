@@ -261,7 +261,7 @@ To do this, it is convenient to describe a related idea: that of \emph{convergen
 	Assume first that $ X $ is quasicompact.
 	Let $ \mu $ be an ultrafilter on $ X $, and assume that $ \mu $ has no limit point.
 	Select, for every point $ x \in X $, an open neighbourhood $ U_x $ thereof that is not $ \mu $-thick.
-	Quasicompactness implies that there is a finite collection $ x_1, \dots, x_n \in X $ such that $ \{ U_{x_1}, \dots, U_{x_n} \} $ covers $ X $.
+	Quasicompactness implies that there is a finite collection $ x_1, \dots, x_n \in X $ such that $ \left\{ U_{x_1}, \dots, U_{x_n} \right\} $ covers $ X $.
 	But at least one of $ U_{x_1}, \dots, U_{x_n} $ must be $ \mu $-thick.
 	This is a contradiction.
 
@@ -580,4 +580,229 @@ A key lemma that demonstrates this is the following.
 %-------------------------------------------------------------------%
 \subsection{Compactly generated topological spaces}
 %-------------------------------------------------------------------%
+
+\begin{dfn}
+	Let $ X $ be a topological space, and let $ \KK $ be a class of nonempty topological spaces.
+	A \defn{$ \KK $-test map} is a continuous map $ f \colon K \to X $, where $ K \in \KK $.
+	We say that a subset $ U \subseteq X $ is \defn{$ \KK $-open} if and only if for any $ \KK $-test map $ \phi \colon K \to X $, the subset $ f^{-1}(U) \subseteq K $ is open.
+\end{dfn}
+
+\begin{nul}
+	The set of $ \KK $-open subsets of $ X $ is a topology -- the \defn{$ \KK $-topology}.
+	We write $ X_{\KK} $ for this topological space.
+	Clearly any open subset of $ X $ is $ \KK $-open, so the $ \KK $-topology is at least as fine as the originally topology.
+\end{nul}
+
+\begin{dfn}
+	Let $ \KK $ be a class of nonempty topological spaces.
+	A topological space $ X $ is said to be \defn{$ \KK $-generated} if and only if every $ \KK $-open subset of $ X $ is open -- that is, if and only if its topology coincides with the $ \KK $-topology, so that the continuous map $ X_{\KK} \to X $ is a homeomorphism.
+\end{dfn}
+
+\begin{nul}
+	If $ \KK $ is a class of nonempty topological spaces, then the category $ \Top_{\KK} $ of $ \KK $-generated topological spaces is the smallest full subcategory of $ \Top $ containing $ \KK $ and stable under colimits.
+	The inclusion $ \Top_{\KK} \inclusion \Top $ admits a right adjoint, which carries a topological space $ X $ to the topological space $ X_{\KK} $ with the $ \KK $-topology.
+\end{nul}
+
+\begin{exm}
+	Since any compactum is a quotient of a free compactum, it follows that the $ \KK $-generated topological spaces coincide for the following classes $ \KK $:
+	\begin{itemize}
+		\item the collection of free compacta,
+		\item the collection of projective compacta,
+		\item the collection of Stone spaces, and
+		\item the collection of all compacta.
+	\end{itemize}
+	In any of these cases, we say \defn{compactly generated} (or sometimes \defn{Kelley} or \defn{k}, but be aware that some authors reserve this word for compactly generated weak Hausdorff topological spaces!) as a synonym for $ \KK $-generated, and we write $ \Top_{\cg} $ for the full subcategory of $ \Top $ spanned by the compactly generated topological spaces.
+	The right adjoint $ \Top \to \Top_{\cg} $ will be denoted $ k $;
+	it is sometimes called \defn{kaonisation} or \defn{Kelleyification}.
+\end{exm}
+
+\begin{exm}
+	The $ \KK $-generated topological spaces coincide for the following classes $ \KK $:
+	\begin{itemize}
+		\item the singleton consisting only of the interval $ [0,1] $,
+		\item the singleton consisting only of the line $ \RR $,
+		\item the collection of all cubes $ [0, 1]^n $,
+		\item the collection of all Euclidean spaces $ \RR^n $, and
+		\item the collection of all topological simplices $ |\Delta^n| $.
+	\end{itemize}
+	In any of these cases, one says \defn{$ \mbfDelta $-generated}, \defn{$I$-generated}, or \defn{numerically generated} as a synonym for $ \KK $-generated.
+	We won't spend any significant quantity of time with numerically generated topological spaces, but they are a relatively well-adapted category for homotopy theory.
+	(For example, the natural map $ X \to \pi_0 X $ is always continuous if $ X $ is numerically generated.)
+\end{exm}
+
+\begin{exm}
+	First countable topological spaces are all compactly generated.
+	Indeed, a first countable topological space is $ \{ \NN^{\ast} \} $-generated, where $ \NN^{\ast} $ is the one-point compactification of $ \NN $.
+	(More generally, $\{ \NN^{\ast} \}$-generated topological spaces are sometimes called \defn{sequential}.)
+	In particular, metrisable topological spaces are all compactly generated.
+\end{exm}
+
+\begin{exm}
+	Every locally compact topological space is compactly generated.
+\end{exm}
+
+\begin{wrn}
+	A subspace $ A $ of a compactly generated topological space $ X $ may not be compactly generated.
+	The space $ A $ is compactly generated if it is either open or closed in $ X $, but in general, we shall refer to $ kA $ as the \defn{compactly generated subspace topology}.
+\end{wrn}
+
+\begin{cnstr}
+	To form the limit of a diagram $ X \colon A^{\op} \to \Top_{\cg} $ of compactly generated topological spaces, one may first form the limit $ \lim^0 X $ in $ \Top $.
+	This won't generally be compactly generated, so it is necessary to kaonise it:
+	\[
+		\lim X \cong k({\lim}^0\ X) \period
+	\]
+\end{cnstr}
+
+\begin{exm}
+	If $ X $ and $ Y $ are both first countable, then so is the product $ X \times^0 Y $, whence it is the product in $ \Top_{cg} $.
+\end{exm}
+
+\begin{prp}
+	If $ X $ is locally compact Hausdorff and $ Y $ is compactly generated, then the product topology $ X \times^0 Y $ is compactly generated, so it is the product in $ \Top_{\cg} $.
+\end{prp}
+
+\begin{proof}
+	Let $ Z \subseteq X \times Y $ be a closed subset.
+	We aim to show that $ Z $ is closed as a subset of $ X \times^0 Y $.
+	Let $ (x_0, y_0) \in  X \times Y \smallsetminus Z $.
+	Use the local compactness of $ X $ to select an open neighbourhood $ V $ of $ x_0 $ such that the closure $ \overline{ V } $ is compact, and $ \overline{ V } \times \{ y_0 \} $ does not meet $ Z $.
+	Now let $ W $ be the set of all points $ y \in Y $ such that $ \overline{V} \times \{ y \} $ does not meet $ Z $;
+	clearly $ y_0 \in W $, so it will suffice for us to prove that $ W $ is open.
+
+	For this, we use that $ Y $ is compactly generated.
+	Hence let $ f \colon K \to Y $ be a test map.
+	The inverse image $ Z' $ of $ Z $ under $ \overline{ V } \times K \to X \times^0 Y $ is closed and thus compact and its image $ \pr_2(Z') $ under the projection $ \pi_2 \colon \overline{ V } \times K \to K $ is compact and thus closed.
+	Observe that the complement of $ \pr_2(Z') $ is exactly the inverse image $ f^{-1}(W) $, which is open.
+\end{proof}
+
+\begin{cnstr}
+	Let $ X $ and $ Y $ be compactly generated topological spaces.
+	Write $ \Map(X, Y) $ for the set of continuous maps $ X \to Y $;
+	we shall endow this with a compactly generated topology. 
+	For any test map $ f \colon K \to X $ and any open set $ V \subseteq Y $, define
+	\[
+		U(f, V) \coloneq \{ g \in \Map(X, Y) : f(K) \subseteq g^{-1}(V) \}
+	\]
+	The \defn{compact-open topology} on $ \Map(X, Y) $ is the coarsest topology such that all the subsets $ W(f, V) $ are open;
+	we write $ \Map^0(X, Y) $ for the set $ \Map(X, Y) $ with the compact-open topology.
+	We now kaonise this topological space:
+	\[
+		\Map(X, Y) \coloneq k\Map^0(X, Y) \period
+	\]
+
+	If $ W $ is compactly generated, then for any continuous map $ g \colon W \to X $, the assignment $ f \mapsto f \circ g $ is a continuous map $ \Map( X, Y ) \to \Map( W, Y ) $;
+	dually, for any continuous map $ h \colon Y \to W $, the assignment $ f \mapsto h \circ f $ is a continuous map $ \Map( X, Y ) \to \Map( X, W ) $.
+\end{cnstr}
+
+\begin{lem}
+	Let $ X $ and $ Y $ be compactly generated topological spaces.
+	Then the natural maps $ \varepsilon \colon X \times \Map( X, Y ) \to Y $ and $ p \colon Y \to \Map( X, X \times Y ) $ are continuous.
+\end{lem}
+
+\begin{proof}
+	We first show that $\varepsilon$ is continuous.
+	Let $ ( f, g ) \colon K \to X \times \Map( X, Y ) $ be a test map, and let $ V \subseteq Y $ be an open subset.
+	We are interested in the inverse image $ W \coloneq ( f, g )^{-1}\varepsilon^{-1} V $.
+	For any $ k \in W $, the map $ g(k) \circ f \colon K \to Y $ is continuous, so select a compact neighbourhood $ L $ of $ k $ such that $ f(L) \subseteq g(k)^{-1}(V) $.
+	One has $ g(k) \in U(f|_L, V) $.
+	Now the neighbourhood $ L \cap g^{-1}U(f|_L, V) $ of $ k $ lies in $ W $, so $ W $ is open.
+
+	Now let us show that $ p $ is continuous.
+	Let $ U \subseteq X \times Y $ be an open subset, and let $ f \colon K \to X $ be a test map.
+	We aim to show that $ p^{-1} W(f, U) \subseteq $ is open.
+	So let $ g \colon L \to Y $ be a test map;
+	we form the inverse image
+	\[
+		g^{-1}(p^{-1}(W(f, U))) = \{ v \in L : K \times \{v\} \subseteq (f, g)^{-1}(U) \} \period
+	\]
+	This is now open by the `Tube Lemma' for compacta.
+\end{proof}
+
+\begin{cor}
+	For any compactly generated topological spaces $ X $, $ Y $, and $ Z $, the natural map
+	\[
+		\Map( X, \Map(Y, Z) ) \to \Map( X \times Y, Z )
+	\]
+	is a bijection and even a homeomorphism.
+	Thus $ \Map(Y, -) $ is right adjoint to the product $ - \times Y $.
+\end{cor}
+
+\begin{cor}
+	The product of two quotient maps in $ \Top_{\cg} $ is again a quotient map.
+\end{cor}
+
+Let us briefly discuss filtered colimits of compactly generated topological spaces.
+First, we note a peculiarity.
+
+\begin{wrn}
+	Every compact metrisable topological space $ X $ is the filtered colimit of its compact countable subspaces.
+
+	Compacta are not compact in either $ \Top $ or $ \Top_{\cg} $.
+	Indeed, the identity $ [0, 1] \to [0, 1] $ does not factor through any countable subspace, even though the interval can be exhibited as the colimit of its countable compact subspaces.
+\end{wrn}
+
+\begin{dfn}
+	A filtered diagram $ X \colon A \to \Top_{\cg} $ is said to be \defn{admissible} if and only if the following conditions obtain:
+	\begin{itemize}
+		\item For any morphism $ \alpha \to \beta $ of $ A $, the map $ X_{\alpha} \to X_{\beta} $ is a closed inclusion.
+		\item Every compact subset of the colimit $ \colim X $ lies in the image of some $ X_{\alpha} $.
+	\end{itemize}
+\end{dfn}
+
+\begin{exm}
+	Every sequence of closed inclusions of compactly generated topological spaces is an admissible filtered diagram.
+\end{exm}
+
+\begin{lem}
+	For any compactum $ K $, the functor $ \Map(K, -) $ preserves admissible filtered diagrams.
+\end{lem}
+
+We won't give the (relatively routine) proof here, but it goes some way to expressing the compactness properties of compacta.
+
+\begin{dfn}
+	A compactly generated topological space $ X $ is \defn{weak Hausdorff} if and only if the diagonal $ \Delta_X \colon X \to X \times X $ is a closed inclusion.
+	We write $ \Top_{\cg, \textit{wh}} \subset \Top_{\cg} $ for the full subcategory spanned by the weak Hausdorff topological spaces.
+\end{dfn}
+
+\begin{lem}
+	A compactly generated topological space $ X $ is weak Hausdorff if and only if the image of any test map $ K \to X $ is closed.
+\end{lem}
+
+\begin{proof}
+	Assume that $ X $ is weak Hausdorff, and let $ f \colon K \to X $ be a test map.
+	If $ g \colon L \to X $ is a test map, then $ g^{-1}(f(K)) $ is equal to the image $ \pr_2((f, g)^{-1}(K)) $, which is the image of closed and thus compact subset of $ K \times L $.
+
+	Conversely, assume that the image of any test map is closed.
+	In particular, any point of $ X $ is closed.
+	Let $ (f, g) \colon K \to X \times X $ be a test map;
+	we aim to show that $ X \times_{X \times X} K \subseteq K $ is closed.
+	Let $ k $ be an element of the complement $ K \smallsetminus ( X \times_{X \times X} K ) $;
+	Let $ U \coloneq f^{-1}( X \smallsetminus \{ g(k) \} ) $;
+	this set is an open neighbourhood of $ k $.
+	Select a closed neighbourhood $ V $ of $ k $ that is contained in $ U $.
+	Now the set $ g^{-1}(X \smallsetminus f(V)) $ is open, by weak Hausdorffness, and the intersection $ \iota(V) \cap W $ is an open neighbourhood of $ k $ that does not meet $ X \times_{X \times X} K $, as desired.
+\end{proof}
+
+\begin{lem}
+	Let $ X $ be a compactly generated topological space, and let $ R \subseteq X \times X $ be an equivalence relation.
+	Then the quotient topological space $ X/R $ is weak Hausdorff if and only if $ R $ is closed in $ X \times X $.
+\end{lem}
+
+\begin{proof}
+	Since $ X \times X \to (X/R) \times (X/R) $ is a quotient map, it follows that $ \Delta_{X/R} $ is a closed immersion if and only if
+	\[
+		R \cong (X \times X) \times_{(X/R) \times (X/R)} X/R \to X \times X
+	\]
+	is a closed immersion.
+\end{proof}
+
+\begin{cor}
+	For any compactly generated topological space $ X $, there exists a smallest closed equivalence relation $ H \subseteq X \times X $ such that $ X \to X/H $ is the universal compactly generated weak Hausdorff topological space to which $ X $ maps.
+	In particular, the assignment $ X \mapsto hX \coloneq X/H $ defines a left adjoint to the inclusion $ \Top_{\cg,\textit{wh}} \inclusion \Top_{\cg} $.
+\end{cor}
+
+
+
+
 
