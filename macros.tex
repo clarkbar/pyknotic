@@ -159,7 +159,6 @@
 \newcommand{\disc}{\ensuremath{\textit{disc}}}
 \newcommand{\indisc}{\ensuremath{\textit{indisc}}}
 \newcommand{\loc}{\ensuremath{\textit{loc}}}
-\newcommand{\Stone}{\ensuremath{\textit{Stn}}}
 \newcommand{\qc}{\ensuremath{\textit{qc}}}
 \newcommand{\vop}{\ensuremath{\textit{vop}}}
 \newcommand{\trig}{\ensuremath{\textit{trig}}}
@@ -232,11 +231,15 @@
 \newcommand{\Setfin}{\Set^{\fin}}
 \newcommand{\Preord}{\categ{Preord}}
 
-
 \newcommand{\Comp}{\categ{Comp}}
 \newcommand{\Stn}{\categ{Stn}}
 \newcommand{\Compproj}{\categ{Proj}}
 \newcommand{\Compprojop}{\Compproj^{\op}}
+\newcommand{\Compfree}{\categ{Free}}
+\newcommand{\CompStone}{\categ{Stone}}
+
+\newcommand{\Topcg}{\categ{CG}}
+\newcommand{\Topcgwh}{\categ{CGWH}}
 
 \newcommand{\FEt}{\textbf{\textup{FÉt}}}
 \newcommand{\Fib}{\categ{Fib}}
@@ -246,50 +249,6 @@
 \newcommand{\Op}{\categ{Op}}
 \newcommand{\Orbital}{\categ{Orb}}
 \newcommand{\PreOp}{\categ{PreOp}}
-
-\newcommand{\TSpc}{\categ{TSpc}}
-\newcommand{\TSpcall}{\TSpc_{\all}}
-\newcommand{\TSpccg}{\TSpc^{\cg}}
-\newcommand{\Num}{\TSpc}
-\newcommand{\TSpcP}{\TSpc_{/P}}
-\newcommand{\sSet}{\stextit\Set}
-\newcommand{\sSetP}{\sSet_{/P}}
-
-
-\newcommand{\preTop}{\pre\Top_{\infty}}
-\newcommand{\preTopbdd}{\preTop^{\bdd}}
-\newcommand{\Topcoh}{\Top_{\infty}^{\coh}}
-\newcommand{\Topbc}{\Top_{\infty}^{\bc}}
-\newcommand{\Topbcadm}{\Top_{\infty}^{\bc,\adm}}
-\newcommand{\Toploc}{\Top_{\infty}^{\loc}}
-\newcommand{\Toppt}{\Top_{\infty,\ast}}
-\newcommand{\TopStone}{\Top_{\infty}^{\Stone}}
-\newcommand{\StrTop}{\categ{StrTop}}
-\newcommand{\StrTopspec}{\StrTop^{\spec}}
-\newcommand{\LocCocart}{\categ{LocCocart}}
-
-\newcommand{\profincomp}{_{\pi}^{\wedge}}
-\renewcommand{\Space}{\categ{S}}
-\newcommand{\Spacefin}{\Space_{\pi}}
-\newcommand{\Spaceprofin}{\Space_{\pi}^{\wedge}}
-\newcommand{\Str}{\categ{Str}}
-\newcommand{\Strat}{\categ{Str}}
-\newcommand{\Strfin}{\Str_{\pi}}
-\newcommand{\Stratfin}{\Str_{\pi}}
-\newcommand{\Strprofin}{\Str_{\pi}^{\wedge}}
-\newcommand{\Stratprofin}{\Str_{\pi}^{\wedge}}
-\newcommand{\Lay}{\categ{Lay}}
-\newcommand{\fet}{\ensuremath{\textit{fét}}}
-
-\newcommand{\Aff}{\categ{Aff}}
-\newcommand{\Constret}{\categ{Cons}_{\et}}
-\newcommand{\PShet}{\categ{PSh}_{\et}}
-\newcommand{\Shet}{\categ{Sh}_{\et}}
-
-\DeclareMathOperator{\Dup}{D}
-\newcommand{\Db}{\Dup^{b}}
-\DeclareMathOperator{\Dperf}{Perf}
-\newcommand{\Dconstr}{\Dup_{\constr}}
 
 \DeclareMathOperator{\Pyk}{Pyk}
 \DeclareMathOperator{\CS}{CS}
@@ -302,9 +261,7 @@
 \newcommand{\Sheff}[1]{\Sh_{\eff}(#1)}
 \newcommand{\Sheffhyp}[1]{\Sh_{\eff}^{\!\hyp}(#1)}
 
-\DeclareMathOperator{\Vect}{Vect}
-\DeclareMathOperator{\Proj}{Proj}
-\DeclareMathOperator{\Cplx}{Cplx}
+\newcommand{\Dperf}{\categ{Perf}}
 \renewcommand{\Rep}{\operatorname{Rep}}
 
 \DeclareMathOperator{\FC}{FC}

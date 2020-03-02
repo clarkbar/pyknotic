@@ -184,7 +184,7 @@ To prove the existence of these, let us look at a more traditional way of defini
 	\]
 	for any ultrafilter $ \tau $ on $ \beta(S) $ and any point $ s \in S $.
 	The image $ \lambda_K(\mu) $ will be called the \defn{limit} of the ultrafilter $\mu$.
-	We write $ \Comp $ for the category of compacta.
+	We write $ \Comp $ for the category of compacta, and write $\Compfree \subset \Comp $ for the full subcategory spanned by the \defn{free compacta} -- \emph{i.e.}, free algebras for $ \beta $.
 \end{dfn}
 
 \begin{cnstr} \label{turnacompactumintoatopspace}
@@ -386,7 +386,7 @@ Let us now return to our functor $ K \mapsto K^{\textit{top}} $.
 
 \begin{dfn}
 	A compactum is a \defn{Stone space} if and only if it is totally separated.
-	Let us write $ \Stone \subseteq \Comp $ for the full subcategory spanned by the Stone spaces.
+	Let us write $ \CompStone \subseteq \Comp $ for the full subcategory spanned by the Stone spaces.
 \end{dfn}
 
 \begin{exm}
@@ -427,7 +427,7 @@ Let us now return to our functor $ K \mapsto K^{\textit{top}} $.
 \end{proof}
 
 \begin{nul}
-	In particular, $ \Stone $ is the smallest full subcategory of $ \Top $ that contains $ \Fin $ and is closed under inverse limits.
+	In particular, $ \CompStone $ is the smallest full subcategory of $ \Top $ that contains $ \Fin $ and is closed under inverse limits.
 \end{nul}
 
 Inverse limits of compacta are exceptionally well behaved.
@@ -466,7 +466,7 @@ A key lemma that demonstrates this is the following.
 
 \begin{lem}
 	Any finite discrete set is cocompact as an object of $ \Comp $.
-	Consequently, the fully faithful functor $ \Fin \inclusion \Comp $ extends to a limit-preserving fully faithful functor $ \Pro(\Fin) \inclusion \Comp $ whose essential image is $ \Stone $.
+	Consequently, the fully faithful functor $ \Fin \inclusion \Comp $ extends to a limit-preserving fully faithful functor $ \Pro(\Fin) \inclusion \Comp $ whose essential image is $ \CompStone $.
 \end{lem}
 
 \begin{proof}
@@ -497,6 +497,7 @@ A key lemma that demonstrates this is the following.
 \begin{dfn}
 	By a \defn{projective compactum} we mean a projective object in compacta.
 	That is, a compactum $ K $ is projective if and only if, for any surjection $ Y \surjection Z $, the map $ \Map(K, Y) \to \Map(K, Z) $ is also a surjection.
+	We write $ \Compproj \subset \Comp $ for the full subcategory spanned by the projective compacta.
 \end{dfn}
 
 \begin{lem}
@@ -611,8 +612,8 @@ A key lemma that demonstrates this is the following.
 		\item the collection of Stone spaces, and
 		\item the collection of all compacta.
 	\end{itemize}
-	In any of these cases, we say \defn{compactly generated} (or sometimes \defn{Kelley} or \defn{k}, but be aware that some authors reserve this word for compactly generated weak Hausdorff topological spaces!) as a synonym for $ \KK $-generated, and we write $ \Top_{\cg} $ for the full subcategory of $ \Top $ spanned by the compactly generated topological spaces.
-	The right adjoint $ \Top \to \Top_{\cg} $ will be denoted $ k $;
+	In any of these cases, we say \defn{compactly generated} (or sometimes \defn{Kelley} or \defn{k}, but be aware that some authors reserve this word for compactly generated weak Hausdorff topological spaces!) as a synonym for $ \KK $-generated, and we write $ \Topcg $ for the full subcategory of $ \Top $ spanned by the compactly generated topological spaces.
+	The right adjoint $ \Top \to \Topcg $ will be denoted $ k $;
 	it is sometimes called \defn{kaonisation} or \defn{Kelleyification}.
 \end{exm}
 
@@ -647,7 +648,7 @@ A key lemma that demonstrates this is the following.
 \end{wrn}
 
 \begin{cnstr}
-	To form the limit of a diagram $ X \colon A^{\op} \to \Top_{\cg} $ of compactly generated topological spaces, one may first form the limit $ \lim^0 X $ in $ \Top $.
+	To form the limit of a diagram $ X \colon A^{\op} \to \Topcg $ of compactly generated topological spaces, one may first form the limit $ \lim^0 X $ in $ \Top $.
 	This won't generally be compactly generated, so it is necessary to kaonise it:
 	\[
 		\lim X \cong k({\lim}^0\ X) \period
@@ -655,11 +656,11 @@ A key lemma that demonstrates this is the following.
 \end{cnstr}
 
 \begin{exm}
-	If $ X $ and $ Y $ are both first countable, then so is the product $ X \times^0 Y $, whence it is the product in $ \Top_{cg} $.
+	If $ X $ and $ Y $ are both first countable, then so is the product $ X \times^0 Y $, whence it is the product in $ \Topcg $.
 \end{exm}
 
 \begin{prp}
-	If $ X $ is locally compact Hausdorff and $ Y $ is compactly generated, then the product topology $ X \times^0 Y $ is compactly generated, so it is the product in $ \Top_{\cg} $.
+	If $ X $ is locally compact Hausdorff and $ Y $ is compactly generated, then the product topology $ X \times^0 Y $ is compactly generated, so it is the product in $ \Topcg $.
 \end{prp}
 
 \begin{proof}
@@ -729,7 +730,7 @@ A key lemma that demonstrates this is the following.
 \end{cor}
 
 \begin{cor}
-	The product of two quotient maps in $ \Top_{\cg} $ is again a quotient map.
+	The product of two quotient maps in $ \Topcg $ is again a quotient map.
 \end{cor}
 
 Let us briefly discuss filtered colimits of compactly generated topological spaces.
@@ -738,12 +739,12 @@ First, we note a peculiarity.
 \begin{wrn}
 	Every compact metrisable topological space $ X $ is the filtered colimit of its compact countable subspaces.
 
-	Compacta are not compact in either $ \Top $ or $ \Top_{\cg} $.
+	Compacta are not compact in either $ \Top $ or $ \Topcg $.
 	Indeed, the identity $ [0, 1] \to [0, 1] $ does not factor through any countable subspace, even though the interval can be exhibited as the colimit of its countable compact subspaces.
 \end{wrn}
 
 \begin{dfn}
-	A filtered diagram $ X \colon A \to \Top_{\cg} $ is said to be \defn{admissible} if and only if the following conditions obtain:
+	A filtered diagram $ X \colon A \to \Topcg $ is said to be \defn{admissible} if and only if the following conditions obtain:
 	\begin{itemize}
 		\item For any morphism $ \alpha \to \beta $ of $ A $, the map $ X_{\alpha} \to X_{\beta} $ is a closed inclusion.
 		\item Every compact subset of the colimit $ \colim X $ lies in the image of some $ X_{\alpha} $.
@@ -762,7 +763,7 @@ We won't give the (relatively routine) proof here, but it goes some way to expre
 
 \begin{dfn}
 	A compactly generated topological space $ X $ is \defn{weak Hausdorff} if and only if the diagonal $ \Delta_X \colon X \to X \times X $ is a closed inclusion.
-	We write $ \Top_{\cg, \textit{wh}} \subset \Top_{\cg} $ for the full subcategory spanned by the weak Hausdorff topological spaces.
+	We write $ \Topcgwh \subset \Topcg $ for the full subcategory spanned by the weak Hausdorff topological spaces.
 \end{dfn}
 
 \begin{lem}
@@ -799,7 +800,7 @@ We won't give the (relatively routine) proof here, but it goes some way to expre
 
 \begin{cor}
 	For any compactly generated topological space $ X $, there exists a smallest closed equivalence relation $ H \subseteq X \times X $ such that $ X \to X/H $ is the universal compactly generated weak Hausdorff topological space to which $ X $ maps.
-	In particular, the assignment $ X \mapsto hX \coloneq X/H $ defines a left adjoint to the inclusion $ \Top_{\cg,\textit{wh}} \inclusion \Top_{\cg} $.
+	In particular, the assignment $ X \mapsto hX \coloneq X/H $ defines a left adjoint to the inclusion $ \Topcgwh \inclusion \Topcg $.
 \end{cor}
 
 
