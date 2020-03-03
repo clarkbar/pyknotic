@@ -129,21 +129,30 @@
 	Thus compactly generated topological spaces form a locaisation of the category of pyknotic sets.
 	Consequently, limits formed in $ \Topcg $ are the same as those formed in $ \Pyk(\Set) $.
 	
-	However, this is not true for colimits, even filtered ones.
-	For example, compacta are compact objects of $ \Pyk(\Set) $, but they are not compact objects of $ \Topcg $.
+	The inclusion $ \Topcgwh \inclusion \Pyk(\Set) $ also admits a left adjoint that carries $ Y \mapsto h(Y^{\textit{top}}) $.
+	Thus limits formed in $ \Topcgwh $ are also the same as those formed in $ \Pyk(\Set) $.
 \end{cnstr}
+
+\begin{nul}
+	If $ X \colon A \to \Pyk(\Set) $ is a filtered diagram of pyknotic sets, then the colimit is given by
+	\[
+		(\colim_{\alpha \in A} X_{\alpha})(K) \cong \colim_{\alpha \in A} X_{\alpha}(K) \period
+	\]
+	Note that the filtered colimit of compactly generated topological spaces is not preserved by the inclusion into pyknotic sets;
+	in particular, compacta are compact objects in $ \Pyk(\Set) $, but not in $ \Topcg $.
+\end{nul}
 
 \begin{exm}
 	For any set $ S $, there is both a discrete and an indiscrete pyknotic set attached to $ S $.
 	The indiscrete pyknotic set $ S $ is the pyknotic set $ S^{\indisc} $ given by the formula
 	\[
-		S^{\indisc}(K) \coloneq \Map(K, S^{\indisc}) \cong \prod_{k \in |K|} S \comma
+		S^{\indisc}(K) \cong \Map(K, S^{\indisc}) \cong \prod_{k \in |K|} S \comma
 	\]
 	where $ K $ is any compactum, and $ |K| $ is the underlying set of $ K $.
 
 	The discrete pyknotic set is given by the formula
 	\[
-		S^{\disc}(K) \coloneq \Map(K, S^{\disc})
+		S^{\disc}(K) \cong \Map(K, S^{\disc})
 	\]
 	for any compactum $ K $.
 	If $ K $ is a Stone space, then we can describe the $ K $-points of $ S^{disc} $ differently: if $ K $ is exhibited as the inverse system $ \{ K_{\alpha} \}_{\alpha \in A^{\op}} $, then
@@ -152,3 +161,31 @@
 	\]
 	Please observe that this is the right Kan extension along $ \{ \ast \} \inclusion \Fin^{\op} $ followed by a left Kan extension along $ \Fin^{\op} \inclusion \CompStone^{\op} $.
 \end{exm}
+
+\begin{exm}
+	Let's compute the quotient $ \{ 0, 1 \}^{\indisc} / \{ 0, 1 \}^{\disc} $.
+	This is the sheafification of the presheaf $ K \mapsto \PP(K) / \PP^{\textit{cl}}(K) $, where $ \PP^{\textit{cl}}(K) \subseteq \PP(K) $ is the set of clopen subsets of $ K $.
+	
+\end{exm}
+
+\begin{dfn}
+	A pyknotic set $ X $ is \defn{a condensed set} if its values are all tiny, and if the functor
+	\[
+		\Ind(\Fin^{\op}) \simeq \Pro(\Fin)^{\op} \to \Set_{\delta_0}
+	\]
+	is accessible.
+\end{dfn}
+
+\begin{exm}
+	If $ X = \{s, \eta\} $ is the Sierpinski space in which $ \{ \eta \} $ is open and $ \{ s \} $ is not, then $ X $ is a pyknotic set, but it is not a condensed set.
+\end{exm}
+
+%-------------------------------------------------------------------%
+\subsection{Quasicompact and quasiseparated}
+%-------------------------------------------------------------------%
+
+
+
+
+
+
