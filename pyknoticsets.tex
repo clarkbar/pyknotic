@@ -151,12 +151,14 @@
 		S^{\indisc}(K) \cong \Map(K, S^{\indisc}) \cong \prod_{k \in |K|} S \comma
 	\]
 	where $ |K|$ denotes the set underlying $ K $. 
+	
 	The discrete pyknotic set attached to $ S $ is given by the formula
 	\[
 		S^{\disc}(K) \cong S^K \coloneq \colim_{\alpha \in A} \prod_{k \in K_{\alpha}} S \comma
 	\]
 	where $ K = \lim_{\alpha \in A^{\op}} K_{\alpha} $ is a Stone space, exhibited as an inverse limit of finite sets.
 	Please observe that this is the right Kan extension along $ \{ \ast \} \inclusion \Fin^{\op} $ followed by a left Kan extension along $ \Fin^{\op} \inclusion \CompStone^{\op} $.
+	Thus the discrete pyknotic sets $ Y $ are exactly those that are left Kan extended from a functor $ \Fin^{\op} \to \Set $ that is itself right Kan extended from the point.
 \end{exm}
 
 \begin{dfn}[Clausen \& Scholze]
@@ -169,11 +171,103 @@
 
 \begin{exm}
 	The Sierpinski space $ \{s, \eta \} $, in which $ \{\eta\} $ is open but $ \{ s \} $ is not, is not a condensed set.
+	In a similar vein, indiscrete pyknotic sets on sets with more than two points are never condensed.
 \end{exm}
+
+\begin{cnstr}
+	Since $ \Pyk (\Set) $ is a topos, it follows readily that there is an internal Hom between two pyknotic sets;
+	that is, the functor $ - \times Y $ admits a right adjoint $ \Map( Y, - ) $, where $ \Map(Y, Z) $ is given by the assignment
+	\[
+		P \mapsto \Map(Y \times P, Z) \cong \Map(Y|P, Z|P) \comma
+	\]
+	where $ Y|P $ and $ Z|P $ are the restrictions of $ Y $ and $ Z $ to $ \Compproj_{/P} $.
+\end{cnstr}
+
+For compactly generated topological spaces, this presents a potential conflict of notation, but in fact all is well:
+\begin{prp}
+	Let $ X $ and $ Y $ be compactly generated topological spaces.
+	Then the pyknotic set $ \Map(X, Y) $ is the one attached to the compactly generated topological space $ \Map(X, Y) $.
+\end{prp}
 
 %-------------------------------------------------------------------%
 \subsection{Quasicompact and quasiseparated}
 %-------------------------------------------------------------------%
 
+\begin{nul}
+	The category $ \Comp $ is a pretopos, and the topos $ \Pyk(\Set) $ is the corresponding topos.
+	In particular, that means that compacta are exactly the same as the \emph{coherent} pyknotic sets -- that is, those that are quasicompact and quasiseparated.
+	Though this is a complete proof, it is actually advantageous to be a little more direct about this.
+\end{nul}
+
+\begin{nul}
+	In a topos $ \XX $, a \defn{covering} $ {\{U_i\}}_{i \in I} $ of an object $ X $ is a family of objects of $ \XX_{/X} $ such that the morphism
+	\[
+		\coprod_{i \in I} U_i \surjection X
+	\]
+	is an effective epimorphism.
+	We say that $ {\{U_i\}}_{i \in I} $ \defn{covers} $ X $.
+
+	The object $ X $ is \defn{quasicompact} if and only if, for every covering $ {\{ U_i \}}_{i \in I} $, there exists a finite subset $ I_0 \subseteq I $ such that $ {\{ U_i \}}_{i \in I_0} $ covers as well.
+
+	A morphism $ X \to Y $ is \defn{quasicompact} if and only if, for any quasicompact object $ L $ any any morphism $ L \to Y $, the pullback $ X \times_Y L $ is quasicompact as well.
+
+	The object $ X $ is \defn{quasiseparated} if and only if, for any two quasicompact objects $ K $ and $ K' $, the fibre product $ K \times_X K' $ is quasicompact as well.
+
+	Finally, we say that $ X $ is \defn{coherent} if and only if it is both quasicompact and quasiseparated.
+\end{nul}
+
+\begin{nul}
+	The 
+
+	If $ K $ is quasicompact, and if $ K \surjection L $ is an effective epimorphism, then $ L $ is quasicompact as well.
+	The proof familiar from topology adapts readily to this situation.
+\end{nul}
+
+\begin{lem}
+	A pyknotic set $ Y $ is quasicompact if and only if, for any covering $ {\{ P_i \}}_{i \in I} $ of $ Y $ by projective compacta, there exists a finite subset $ I_0 \subseteq I $ such that $ {\{P_i\}}_{i \in I_0} $ covers as well.
+\end{lem}
+
+\begin{proof}
+	It is clear that any quasicompact object enjoys this property.
+	Conversely, suppose that $ Y $ enjoys this property, and suppose that $ {\{ U_i \}}_{i \in I} $ is a covering of $ Y $. 
+	Choose, for each $ i \in I $, a covering $ {\{ P_j \}}_{j \in J_i} $ comprised of projective compacta.
+	
+	Write $ J = \coprod_{i \in I} J_i $, and let $ f \colon J \to I $ be the map that carries $ j $ to the element $ i \in I $ such that $ j \in J_i $.
+	Hence the objects $ {\{ P_j \}}_{j \in J} $ cover $ Y $, 
+	and by assumption, there exists a finite subset $ J_0 \subseteq J $ such that $ {\{ P_j \}}_{j \in J_0} $ cover $ Y $. 
+	Now let $ I_0 \coloneq f(J_0) $;
+	then $ {\{ U_i \}}_{i \in I_0} $ covers $ Y $, and the proof is complete.
+\end{proof}
+
+\begin{cor}
+	Any compactum is quasicompact as a pyknotic set.
+\end{cor}
+
+\begin{lem}
+	A pyknotic set $ Y $ is quasiseparated if and only if, for any projective compacta $ P $ and $ P' $ and any morphism $ P \to Y $ and $ P' \to Y $, the pullback $ P \times_Y P' $ is quasicompact.
+\end{lem}
+
+\begin{proof}
+	It is clear that any quasiseparated pyknotic set enjoys this property.
+	Conversely, assume that $ Y $ enjoys this property, let $ K $ and $ K' $ be quasicompact objects, and let $ K \to Y $ and $ K' \to Y $ be morphisms.
+	Using quasicompacness, we may select effective epimorphisms $ P \surjection K $ and $ P' \surjection K' $.
+	By assumption, $ P \times_Y P' $ is quasicompact, and the map $ P \times_Y P' \surjection K \times_Y K' $ is an effective epimorphism, so $ K \times_Y K' $ is quasicompact as well.
+\end{proof}
+
+\begin{cor}
+	Any compactum is quasiseparated as a pyknotic set.
+\end{cor}
+
+\begin{prp}
+	Any coherent pyknotic set is a compactum.
+\end{prp}
+
+\begin{proof}
+	Let $ Y $ be a coherent pyknotic set.
+	By quasicompacness there exists an effective epimorphism $ K \surjection Y $, and by quasiseparatedness the fibre product $ K \times_Y K $ is quasicompact.
+	By the definition of the effective epimorphism topology, if $ K \times_Y K $ is represented by a closed subspace of $ K \times K $, then the quotient $ Y $ will be the quotient of $ K $ as computed in $ \Comp $.
+	We therefore aim to show that $ K \times_Y K $ is represented by a closed subspace of $ K \times K $.
+
+\end{proof}
 
 

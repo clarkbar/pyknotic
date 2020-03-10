@@ -677,6 +677,15 @@ A key lemma that demonstrates this is the following.
 	Observe that the complement of $ \pr_2(Z') $ is exactly the inverse image $ f^{-1}(W) $, which is open.
 \end{proof}
 
+\begin{dfn}
+	A topological space $ X $ is said to be $ k_{\omega} $ if and only if there exists a nested sequence $ X_0 \subseteq X_1 \subseteq \cdots \subseteq X $ of compact Hausdorff subspaces such that the natural map exhibits $ X $ as the colimit of the $ X_i $.
+	A topological space $ X $ is said to be \defn{locally $ k_{\omega} $} if and only if every point of $ X $ is contained in a $ k_{\omega} $ neighbourhood.
+\end{dfn}
+
+\begin{prp}
+	Any locally $ k_{\omega} $ topological space is a compactly generated topological space, and for any two locally $ k_{\omega} $ topological spaces $ X $ and $ Y $, the product $ X \times^0 Y $ is again locally $ k_{\omega} $, so that $ X \times Y = X \times^0 Y $.
+\end{prp}
+
 \begin{cnstr}
 	Let $ X $ and $ Y $ be compactly generated topological spaces.
 	Write $ \Map(X, Y) $ for the set of continuous maps $ X \to Y $;
